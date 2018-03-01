@@ -1,0 +1,63 @@
+info:
+  appname: 'shaomi'
+  operation:
+    email: '250863062@qq.com' #系统故障可以发送邮件给
+    phone: '18184661570' #系统故障可以发送短信
+server:
+  port: 80
+  compression:
+    enabled: true
+    mime-types: application/json,application/javascript,text/html,text/xml,text/plain,text/css,text/javascript
+    min-response-size: 2048
+  session:
+    cookie:
+      name: shaomi
+      http-only: true
+    timeout: 300
+  tomcat:
+    uri-encoding: UTF-8
+    basedir: tomcat-tmp
+    accesslog:
+      directory: accesslog
+      enabled: true
+logging:
+    config: classpath:logback-console.xml
+spring:
+  messages:
+    basename: i18n/msg,i18n/msg_mail  # Comma-separated list of basenames, each following the ResourceBundle convention.
+    cache-seconds: -1 # Loaded resource bundle files cache expiration, in seconds. When set to -1, bundles are cached forever.
+  datasource:
+    initialize: false
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/win?useSSL=false
+    username: root
+    password: root
+    max-active: 200
+    initial-size: 10
+    max-age: 60000
+    max-wait: 2000
+    remove-abandoned: true
+    remove-abandoned-timeout: 180
+    validation-query: SELECT 1
+    validation-query-timeout: 1
+    validation-interval: 30000
+    test-on-borrow: false
+    test-on-return: false
+    test-while-idle: true
+    time-between-eviction-runs-millis: 10000
+    min-evictable-idle-time-millis: 60000
+    num-tests-per-eviction-run: 20
+    log-abandoned: true
+  mvc:
+    view:
+      prefix: /pages/
+      suffix: .jsp
+  jpa:
+    show-sql: false
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate: 
+      dialect: org.hibernate.dialect.MySQL5Dialect   #指定数据库方言
+multipart:
+  max-file-size: 300Mb # Max file size. Values can use the suffixed "MB" or "KB" to indicate a Megabyte or Kilobyte size.
+  max-request-size: 500Mb # Max request size. Values can use the suffixed "MB" or "KB" to indicate a Megabyte or Kilobyte size.
+
